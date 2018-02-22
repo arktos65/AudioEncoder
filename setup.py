@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='AudioEncoder',
-    version='0.2.3',
+    version='0.2.4',
     packages=['venv.lib.python3.6.distutils', 'venv.lib.python3.6.encodings', 'venv.lib.python3.6.importlib',
               'venv.lib.python3.6.collections', 'venv.lib.python3.6.site-packages.pip',
               'venv.lib.python3.6.site-packages.pip.req', 'venv.lib.python3.6.site-packages.pip.vcs',

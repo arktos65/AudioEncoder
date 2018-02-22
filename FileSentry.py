@@ -12,6 +12,8 @@ class FileSentry:
     location, encode the audio file, push the resulting transcoded file to a new location.
     """
     def check_for_files(self):
+        if not os.path.exists(os.environ['INPUT_FOLDER']):
+            os.makedirs(os.environ['INPUT_FOLDER'])
         return os.listdir(os.environ['INPUT_FOLDER'])
 
     def encode_file(self, file_names):
@@ -21,6 +23,8 @@ class FileSentry:
 
         # Encode the source file to a new directory
         print("Sentry: encoding", input_file,"as", output_file)
+        if not os.path.exists(os.environ['OUTPUT_FOLDER']):
+            os.makedirs(os.environ['OUTPUT_FOLDER'])
         encoder(input_file, output_file)
 
         # Remove source file
