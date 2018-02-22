@@ -14,9 +14,6 @@ class FileSentry:
     def check_for_files(self):
         return os.listdir(os.environ['INPUT_FOLDER'])
 
-    def nothing_is_happening(self):
-        print("Sentry: no new audio files detected. Going back to sleep.")
-
     def encode_file(self, file_names):
         f = file_names[0]
         input_file = os.environ['INPUT_FOLDER'] + "/" + f
@@ -37,8 +34,7 @@ def main():
     while True:
         audio_files = sentry.check_for_files()
         if not audio_files:
-            sentry.nothing_is_happening()
-            time.sleep(5)
+            time.sleep(1)
         else:
             sentry.encode_file(audio_files)
             break
