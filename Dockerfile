@@ -1,8 +1,8 @@
 FROM python:3
 
-WORKDIR /usr/src/Encoder
+WORKDIR /usr/src/audio_encoder
 
-ADD . /usr/src/Encoder
+ADD . /usr/src/audio_encoder
 
 #COPY requirements.txt ./
 #RUN pip install --no-cache-dir -r requirements.txt
@@ -12,5 +12,5 @@ ENV NAME INPUT_FOLDER
 ENV NAME OUTPUT_FOLDER
 ENV NAME BLOB_NAME
 
-# Run MessageSentry.py when the container launches
-CMD ["python", "MessageSentry.py"]
+# Run FileSentry.py when the container launches
+CMD ["python", "FileSentry.py"]
