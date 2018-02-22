@@ -3,6 +3,8 @@
 import os
 import time
 
+# Fake encoder
+from shutil import copy as encoder
 
 class FileSentry:
     """
@@ -15,18 +17,18 @@ class FileSentry:
     def nothing_is_happening(self):
         print("Sentry: no new audio files detected. Going back to sleep.")
 
-    def something_is_happening(self):
-        print("Something is happening")
+    def encode_file(self, file_names):
+        f = file_names[0]
+        input_file = os.environ['INPUT_FOLDER'] + "/" + f
+        output_file = os.environ['OUTPUT_FOLDER'] + "/" + f
 
-    def process_files(self, file_names):
-        for f in file_names:
-            file_name = os.environ['INPUT_FOLDER'] + "/" + f
-            print("Sentry: fetching",file_name)
-            self.encode_file(file_name)
+        # Encode the source file to a new directory
+        print("Sentry: encoding",input_file,"as",output_file)
+        encoder(input_file, output_file)
 
-    def encode_file(self, file_name):
-        print("Encode: ",file_name)
-        os.remove(file_name)
+        # Remove source file
+        print("Sentry: deleting",input_file)
+        os.remove(input_file)
 
 
 def main():
@@ -36,10 +38,10 @@ def main():
         audio_files = sentry.check_for_files()
         if not audio_files:
             sentry.nothing_is_happening()
-            time.sleep(15)
+            time.sleep(5)
         else:
-            sentry.process_files(audio_files)
-            time.sleep(15)
+            sentry.encode_file(audio_files)
+            break
 
 
 if __name__ == "__main__":
