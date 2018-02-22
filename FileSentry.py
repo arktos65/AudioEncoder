@@ -20,11 +20,11 @@ class FileSentry:
         output_file = os.environ['OUTPUT_FOLDER'] + "/" + f
 
         # Encode the source file to a new directory
-        print("Sentry: encoding",input_file,"as",output_file)
+        print("Sentry: encoding", input_file,"as", output_file)
         encoder(input_file, output_file)
 
         # Remove source file
-        print("Sentry: deleting",input_file)
+        print("Sentry: deleting", input_file)
         os.remove(input_file)
 
 
