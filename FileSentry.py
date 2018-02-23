@@ -4,7 +4,7 @@ import os
 import time
 
 # Fake encoder
-from shutil import copy as encoder
+from shutil import move as encoder
 
 class FileSentry:
     """
@@ -26,10 +26,6 @@ class FileSentry:
         if not os.path.exists(os.environ['OUTPUT_FOLDER']):
             os.makedirs(os.environ['OUTPUT_FOLDER'])
         encoder(input_file, output_file)
-
-        # Remove source file
-        print("Sentry: deleting", input_file)
-        os.remove(input_file)
 
 
 def main():
